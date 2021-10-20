@@ -15,7 +15,7 @@ function App(props: any) {
           <Route<IRouteInterface>
             exact
             path="/"
-            name='Todo App'
+            name='Weather App'
             render={(props: any) => <Weather {...props} />}
           />
         </Switch>
