@@ -83,7 +83,6 @@ var barConfig: object | any = {
 		gridLineWidth: 0,
 		minorGridLineWidth: 0,
 		tickLength: 0,
-		// visible: false,
 	},
 
 	legend: {
@@ -98,9 +97,6 @@ var barConfig: object | any = {
 		shadow: false,
 	},
 
-	// legend: {
-	// 	reversed: true
-	// },
 	plotOptions: {
 		column: {
 			grouping: false,
@@ -151,6 +147,7 @@ const Weather: FunctionComponent<WeatherProps> = (props) => {
 	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const [activeWeek, setActiveWeek] = useState<number>(0);
 	const [windData, setWindData] = useState([]);
+
 	useEffect(() => {
 		getData();
 	}, []);
@@ -164,7 +161,7 @@ const Weather: FunctionComponent<WeatherProps> = (props) => {
 		setIsLoading(true);
 		// hourly data
 		await axios
-			.get(`${process.env.REACT_APP_SERVER_URL}weather`)
+			.get(`${process.env.REACT_APP_SERVER_URL}/weather`)
 			.then(async (data) => {
 				const { success, hourlyData, weeklyData } = data.data;
 				if (success) {
@@ -288,7 +285,7 @@ const Weather: FunctionComponent<WeatherProps> = (props) => {
 	--------------------------------------------------------------------
 		Function to update data for Temperature, Precipitation and Wind
 	--------------------------------------------------------------------
-			*/
+	*/
 	const onHeadSelected = (e: any, value: string) => {
 		setHeaderSelected(value);
 		var dates: any = [];
@@ -356,6 +353,7 @@ const Weather: FunctionComponent<WeatherProps> = (props) => {
 					},
 				],
 			};
+
 			setConfig(barConfig);
 		} else if (value === 'W') {
 			setWindData(windArray)
@@ -395,7 +393,7 @@ const Weather: FunctionComponent<WeatherProps> = (props) => {
 	-----------------------------------------
 		Function to set the selected week data
 	-----------------------------------------
-		*/
+	*/
 	const onWeekSelected = (e: any, key: number) => {
 		console.log('week selected', key);
 		setActiveWeek(key);
