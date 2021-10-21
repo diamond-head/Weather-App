@@ -16,8 +16,8 @@ app.use(bodyParser.json({ limit: '100mb' }));
 
 const corsOption = {
   origin: true,
-  methods: 'GET',
   credentials: true,
+  methods: 'GET',
 };
 
 app.use(cors(corsOption));
